@@ -89,7 +89,17 @@ jobs:
           -chdir="${{inputs.root_module_folder_relative_path}}" \
           show \
           tfplan
-
+  approval:
+    needs: plan
+    name: Wait for Approval
+    runs-on: ubuntu-latest
+    environment: alz-mgmt-approval
+    permissions:
+      contents: read
+    steps:
+      - name: Manual Approval Required
+        run: |
+          echo "⏳ Waiting for manual approval to proceed with Terraform apply..."
   apply:
     needs: plan
     name: Apply with Terraform
