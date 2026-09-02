@@ -101,7 +101,7 @@ jobs:
         run: |
           echo "⏳ Waiting for manual approval to proceed with Terraform apply..."
   apply:
-    needs: plan
+    needs: approval
     name: Apply with Terraform
     runs-on:
       ubuntu-latest
